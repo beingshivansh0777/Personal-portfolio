@@ -6,13 +6,15 @@
     <title>Shivansh Mishra - Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Added jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- Header & Navigation -->
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="#">SM</a>
+                <a1 href="#">SM</a1>
             </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
@@ -39,16 +41,23 @@
     <section id="home" class="hero-section">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight">Shivansh Mishra</span></h1>
-                <p class="tagline">A Full Stack Developer who builds scalable web apps.</p>
-                <div class="cta-buttons">
-                    <a href="resume.pdf" download="Shivansh_Mishra_Resume.pdf" class="btn primary-btn">Download Resume</a>
-                    <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                <h1>Hi, I'm <span class="highlight typing-text">Shivansh Mishra</span></h1>
+                <p class="tagline fade-in-up">A Full Stack Developer who builds scalable web apps.</p>
+                <div class="cta-buttons fade-in-up">
+                    <!-- Added tooltip data attributes for popup hover effects -->
+                    <a href="#" id="download-resume-btn" class="btn primary-btn" data-tooltip="Download my resume as PDF">Download Resume</a>
+                    <a href="#contact" class="btn secondary-btn" data-tooltip="Get in touch with me">Contact Me</a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="profile-img-container">
+                <div class="profile-img-container floating">
                     <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1000008388-0HJ269zTBJ5F4i9cuEKRCxu2uJTqEL.jpeg" alt="Shivansh Mishra" class="profile-img">
+                </div>
+                <!-- Added floating background elements -->
+                <div class="floating-elements">
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
+                    <div class="floating-element"></div>
                 </div>
             </div>
         </div>
@@ -81,6 +90,7 @@
                 <div class="skill-category">
                     <h3>Frontend</h3>
                     <div class="skills-grid">
+                        <!-- Removed progress bars from all skill items -->
                         <div class="skill-item">
                             <i class="fab fa-react"></i>
                             <span>React</span>
@@ -107,12 +117,13 @@
                 <div class="skill-category">
                     <h3>Backend</h3>
                     <div class="skills-grid">
+                        <!-- Removed progress bars from backend skills -->
                         <div class="skill-item">
-                         <i class="fa-brands fa-node"></i>
+                            <i class="fa-brands fa-node"></i>
                             <span>Node.js</span>
                         </div>
                         <div class="skill-item">
-                        <i class="fab fa-node-js"></i>
+                            <i class="fab fa-node-js"></i>
                             <span>Express JS</span>
                         </div>
                     </div>
@@ -121,6 +132,7 @@
                 <div class="skill-category">
                     <h3>Tools</h3>
                     <div class="skills-grid">
+                        <!-- Removed progress bars from tools -->
                         <div class="skill-item">
                             <i class="fab fa-git-alt"></i>
                             <span>Git</span>
@@ -135,12 +147,13 @@
                 <div class="skill-category">
                     <h3>Languages</h3>
                     <div class="skills-grid">
+                        <!-- Removed progress bars from languages -->
                         <div class="skill-item">
                             <i class="fab fa-js"></i>
                             <span>JavaScript</span>
                         </div>
                         <div class="skill-item">
-                       <i class="fa-solid fa-c"></i>
+                            <i class="fa-solid fa-c"></i>
                             <span>C</span>
                         </div>
                         <div class="skill-item">
@@ -164,7 +177,7 @@
                         <p class="project-description">Tic Tac Toe built by using a skill of JS, HTML and CSS</p>
                         <div class="project-links">
                             <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://github.com/beingshivansh0777/Tic-Tac-Toe-Game" class="project-link"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -172,10 +185,10 @@
                 <div class="project-card">
                     <div class="project-content">
                         <h3 class="project-title">Personal Portfolio</h3>
-                        <p class="project-description">Built by using frontend, backend and DBMS skill.</p>
+                        <p class="project-description">⁠Responsive design for all devices •⁠ ⁠Smooth navigation and clean UI •⁠⁠Contact form to reach out directly.</p>
                         <div class="project-links">
-                            <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#" class="project-link"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="http://127.0.0.1:3000/index.html" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/beingshivansh0777/Personal-portfolio" class="project-link"><i class="fab fa-github"></i> GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -199,7 +212,7 @@
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>Bachelor of Technology(B.tech)</h3>
-                         <p class="timeline-duration">Duration: 4 years</p>
+                        <p class="timeline-duration">Duration: 4 years</p>
                     </div>
                 </div>
             </div>
@@ -213,12 +226,11 @@
             <div class="contact-container">
                 <div class="contact-info">
                     <div class="contact-item">
-                         <i class="fas fa-envelope"></i>
-                        <p><a href="">luckymishra2625@gmail.com
-                        </a></p>
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="">luckymishra2625@gmail.com</a></p>
                     </div>
-                     <div class="contact-item">
-                         <i class="fa-solid fa-phone"></i>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
                         <p>+91 8858094500</p>
                     </div>
 
@@ -232,7 +244,6 @@
                         <a href="https://x.com/Mishra0857?t=TkFzcQorrC-N9xXeA-cgAQ&s=09" target="_blank" class="social-icon">
                             <i class="fab fa-twitter"></i>
                         </a>
-                           </a>
                         <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=kxn3ls2" target="_blank" class="social-icon">
                             <i class="fab fa-instagram"></i>
                         </a>
@@ -249,7 +260,7 @@
                             <label for="email">Email</label>
                             <input type="email" id="email" name="Email" required>
                         </div>
-                      <div class="form-group">
+                        <div class="form-group">
                             <label for="contact">Contact</label>
                             <input type="text" id="Contact" name="Contact" required>
                         </div>
