@@ -194,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.classList.add("loading")
 
       // Google Sheets script URL - you'll replace this with your actual script URL
-      const scriptURL = "YOUR_NEW_DEPLOYMENT_URL_HERE"
+      const scriptURL = "https://script.google.com/macros/s/AKfycbyo_yTR0STdxhodUmyxQUE3wW_rAIRQwqYZLI0wsJyDqsvjcDo2gVOfbDnueVo-N_Zw/exec"
 
       // Create form data to send
       const formData = new FormData()
