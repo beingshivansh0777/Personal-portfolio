@@ -10,6 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+    <!-- Added animated points container -->
+    <div class="animated-points" id="animated-points"></div>
+    
     <!-- Header & Navigation -->
     <header>
         <nav class="navbar">
@@ -41,7 +44,8 @@
     <section id="home" class="hero-section">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight typing-text">Shivansh Mishra</span></h1>
+                <!-- Added data-text attribute for shimmer effect -->
+                <h1 data-text="Hi, I'm Shivansh Mishra">Hi, I'm <span class="highlight typing-text">Shivansh Mishra</span></h1>
                 <p class="tagline fade-in-up">A Full Stack Developer who builds scalable web apps.</p>
                 <div class="cta-buttons fade-in-up">
                     <!-- Added tooltip data attributes for popup hover effects -->
@@ -280,7 +284,6 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 Shivansh Mishra. All rights reserved.</p>
             <p>Made by ❤️ Shivansh Mishra</p>
         </div>
     </footer>
