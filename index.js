@@ -3,6 +3,55 @@ document.addEventListener("DOMContentLoaded", () => {
   let mouseY = 0
   let isMouseActive = false
 
+  function createAnimatedPoints() {
+    const pointsContainer = document.getElementById("animated-points")
+    const numberOfPoints = 80 // Increased from 50 to 80
+
+    for (let i = 0; i < numberOfPoints; i++) {
+      const point = document.createElement("div")
+      point.className = "animated-point"
+
+      // Random position
+      point.style.left = Math.random() * 100 + "%"
+      point.style.top = Math.random() * 100 + "%"
+
+      // Random animation delay
+      point.style.animationDelay = Math.random() * 8 + "s"
+
+      // Random size variation
+      const size = 2 + Math.random() * 3 // 2px to 5px
+      point.style.width = size + "px"
+      point.style.height = size + "px"
+
+      // Random opacity
+      point.style.opacity = 0.3 + Math.random() * 0.7
+
+      pointsContainer.appendChild(point)
+    }
+  }
+
+  function createInteractivePoints() {
+    const pointsContainer = document.getElementById("animated-points")
+    const interactivePoints = 15
+
+    for (let i = 0; i < interactivePoints; i++) {
+      const point = document.createElement("div")
+      point.className = "animated-point interactive-point"
+      point.style.left = Math.random() * 100 + "%"
+      point.style.top = Math.random() * 100 + "%"
+      point.style.animationDelay = Math.random() * 3 + "s"
+
+      // Mark as interactive for mouse following
+      point.dataset.interactive = "true"
+      point.dataset.speed = (0.02 + Math.random() * 0.03).toString()
+
+      pointsContainer.appendChild(point)
+    }
+  }
+
+  createAnimatedPoints()
+  createInteractivePoints()
+
   // Track mouse movement for background effect
   document.addEventListener("mousemove", (e) => {
     mouseX = (e.clientX / window.innerWidth) * 100
@@ -15,12 +64,33 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.add("mouse-active")
       isMouseActive = true
     }
+
+    const floatingElements = document.querySelectorAll(".floating-element")
+    floatingElements.forEach((element, index) => {
+      const speed = (index + 1) * 0.02
+      const x = (e.clientX - window.innerWidth / 2) * speed
+      const y = (e.clientY - window.innerHeight / 2) * speed
+      element.style.transform = `translate(${x}px, ${y}px)`
+    })
+
+    const interactivePoints = document.querySelectorAll(".animated-point[data-interactive='true']")
+    interactivePoints.forEach((point) => {
+      const speed = Number.parseFloat(point.dataset.speed)
+      const x = (e.clientX - window.innerWidth / 2) * speed
+      const y = (e.clientY - window.innerHeight / 2) * speed
+      point.style.transform = `translate(${x}px, ${y}px) scale(1.2)`
+    })
   })
 
   // Hide effect when mouse leaves window
   document.addEventListener("mouseleave", () => {
     document.body.classList.remove("mouse-active")
     isMouseActive = false
+
+    const interactivePoints = document.querySelectorAll(".animated-point[data-interactive='true']")
+    interactivePoints.forEach((point) => {
+      point.style.transform = "translate(0, 0) scale(1)"
+    })
   })
 
   function createRipple(event) {
@@ -194,7 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
       submitBtn.classList.add("loading")
 
       // Google Sheets script URL - you'll replace this with your actual script URL
-      const scriptURL = "https://script.google.com/macros/s/AKfycbyo_yTR0STdxhodUmyxQUE3wW_rAIRQwqYZLI0wsJyDqsvjcDo2gVOfbDnueVo-N_Zw/exec"
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbyo_yTR0STdxhodUmyxQUE3wW_rAIRQwqYZLI0wsJyDqsvjcDo2gVOfbDnueVo-N_Zw/exec"
 
       // Create form data to send
       const formData = new FormData()
@@ -244,16 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
     })
   }
-
-  const skillItems = document.querySelectorAll(".skill-item")
-  const progressBars = document.querySelectorAll(".progress-bar")
-
-  skillItems.forEach((item, index) => {
-    item.style.opacity = "0"
-    item.style.transform = "translateY(20px)"
-    item.style.transition = "opacity 0.5s ease, transform 0.5s ease"
-    item.style.transitionDelay = `${index * 0.1}s`
-  })
 
   const downloadResumeBtn = document.getElementById("download-resume-btn")
 
@@ -341,22 +402,22 @@ document.addEventListener("DOMContentLoaded", () => {
         doc.setFontSize(10)
         doc.text("Micro IT", 20, yPos)
         yPos += 8
-        doc.text("• Developed functional and dynamic websites using front-end and back-end technologies", 20, yPos)
+        doc.text("• Developed functional and dynamic websites using front-end and back-end technologies.", 20, yPos)
         yPos += 5
-        doc.text("• Implemented optimized and bug-free code for enhanced performance", 20, yPos)
+        doc.text("• Implemented optimized and bug-free code for enhanced performance.", 20, yPos)
         yPos += 5
-        doc.text("• Ensured seamless user experience across all platforms", 20, yPos)
+        doc.text("• Ensured seamless user experience across all platforms.", 20, yPos)
         yPos += 10
 
         doc.setFontSize(12)
         doc.text("Freelance Web Developer", 20, yPos)
         yPos += 8
         doc.setFontSize(10)
-        doc.text("• Developed and deployed responsive websites for multiple clients", 20, yPos)
+        doc.text("• Developed and deployed responsive websites for many clients.", 20, yPos)
         yPos += 5
-        doc.text("• Used Next.js, Tailwind CSS, and MongoDB for modern web solutions", 20, yPos)
+        doc.text("• Used Next.js, Tailwind CSS, and MongoDB for modern web solutions.", 20, yPos)
         yPos += 5
-        doc.text("• Integrated secure payment gateways and authentication systems", 20, yPos)
+        doc.text("• Integrated secure payment gateways and authentication systems.", 20, yPos)
         yPos += 15
 
         // Projects Section
@@ -394,39 +455,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Intersection Observer for animations
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Animate skill items when skills section is visible
-          if (entry.target.id === "skills") {
-            skillItems.forEach((item) => {
-              item.style.opacity = "1"
-              item.style.transform = "translateY(0)"
-            })
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  }
 
-            setTimeout(() => {
-              progressBars.forEach((bar) => {
-                const skillLevel = bar.getAttribute("data-skill")
-                bar.style.width = skillLevel + "%"
-              })
-            }, 500)
-          }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1"
+        entry.target.style.transform = "translateY(0)"
 
-          // Add animation class to the section
-          entry.target.classList.add("animate")
-
-          // Stop observing after animation
-          observer.unobserve(entry.target)
+        // Add stagger effect for skill items
+        if (entry.target.classList.contains("skill-item")) {
+          const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 100
+          setTimeout(() => {
+            entry.target.style.opacity = "1"
+            entry.target.style.transform = "translateY(0) scale(1)"
+          }, delay)
         }
-      })
-    },
-    { threshold: 0.1 },
-  )
+      }
+    })
+  }, observerOptions)
 
   // Observe all sections for animations
-  sections.forEach((section) => {
-    observer.observe(section)
+  document.querySelectorAll(".skill-item, .project-card, .timeline-item").forEach((el) => {
+    el.style.opacity = "0"
+    el.style.transform = "translateY(30px)"
+    el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+    observer.observe(el)
   })
 })
-    
