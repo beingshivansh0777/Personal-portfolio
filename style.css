@@ -640,6 +640,32 @@ header {
   line-height: 1.8;
 }
 
+/* Experience Section */
+.experience {
+  text-align: center;
+  padding: 20px;
+
+}
+
+.experience h3 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  padding-bottom: 4px;
+  border-bottom: 4px solid #4F46E5;
+  display: inline-block;
+  /* text-decoration: underline #4F46E5 4px; */
+}
+
+.experience ul {
+  list-style: none;
+  padding: 0;
+}
+
+.experience li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
 /* ===== SKILLS SECTION ===== */
 .skills-container {
   display: grid;
